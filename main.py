@@ -18,11 +18,11 @@ def report(path, text): # function to generate a formatted report using previous
     print(f"--- Begin report of {path} ---")
     print(f"{word_counter(text)} words found in the document")
     print()
-    #base_char_dict = 
+    base_char_dict = char_counter(text)
     char_dict_list = []
 
-    for char_key in char_counter(text):
-        char_dict_list.append({"symbol":char_key,"number":char_counter(text)[char_key]})
+    for char_key in base_char_dict:
+        char_dict_list.append({"symbol":char_key,"number":base_char_dict[char_key]})
 
     def sort_on(dict):
         return dict["number"]
