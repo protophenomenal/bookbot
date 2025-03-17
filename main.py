@@ -1,9 +1,10 @@
+import sys
+from stats import word_counter
+
+
 def get_book_text(path): #function to obtain a string of text from a path file
     with open(path) as f:
         return f.read()
-
-def word_counter(input_string): # function to count the words ommiting whitespace from an input string
-    return len(input_string.split())
 
 def char_counter(input_string): # function to create a dictionary of the occurance of all characters in an input string (standardised to lowercase)
     char_dict = {}
@@ -31,12 +32,15 @@ def report(path, text): # function to generate a formatted report using previous
 
     for element in char_dict_list:
         if element["symbol"].isalpha():
-            print(f"The '{element["symbol"]}' character was found {element["number"]} times") 
+            print(f"{element['symbol']}: {element['number']}") 
     print("--- End report ---")
     return
 
 def main():
-    path = "books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    path = sys.argv[1]
     return report(path,get_book_text(path))
 
 main()
